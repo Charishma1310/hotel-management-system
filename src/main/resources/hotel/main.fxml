@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hotel.MainController" prefWidth="1050" prefHeight="720"
+            style="-fx-background-color: #16213e;">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="10"
+          style="-fx-background-color:linear-gradient(to right,#0f3460,#533483,#e94560);-fx-padding:18 30 18 30;">
+      <Label text="LuxStay Hotel Management System" style="-fx-text-fill:white;-fx-font-weight:bold;-fx-font-size:22px;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Your comfort, our priority" style="-fx-text-fill:#f0c040;-fx-font-style:italic;"/>
+    </HBox>
+  </top>
+  <center>
+    <TabPane tabClosingPolicy="UNAVAILABLE" style="-fx-tab-min-width:170px;">
+      <Tab text="Rooms">
+        <VBox spacing="16" style="-fx-background-color:#0d1117;-fx-padding:22;">
+          <TitledPane text="Add New Room" collapsible="false"
+                      style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;">
+            <GridPane hgap="14" vgap="12">
+              <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+              <Label text="Room Number :" style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+              <TextField fx:id="tfRoomNo" promptText="e.g. 101" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+              <Label text="Room Type :" style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+              <ComboBox fx:id="cbRoomType" promptText="Select type" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+              <Label text="Price / Day (Rs.) :" style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+              <TextField fx:id="tfPrice" promptText="e.g. 1500.00" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              <Button text="Add Room" onAction="#handleAddRoom"
+                      style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-padding:8 22;-fx-background-radius:6;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+          </TitledPane>
+          <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="All Rooms" onAction="#showAllRooms"
+                    style="-fx-background-color:#533483;-fx-text-fill:white;-fx-padding:8 18;-fx-background-radius:6;"/>
+            <Button text="Available Only" onAction="#showAvailableRooms"
+                    style="-fx-background-color:#27ae60;-fx-text-fill:white;-fx-padding:8 18;-fx-background-radius:6;"/>
+          </HBox>
+          <TableView fx:id="roomTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn fx:id="colRoomNo"     text="Room No."        prefWidth="120"/>
+              <TableColumn fx:id="colRoomType"   text="Type"            prefWidth="130"/>
+              <TableColumn fx:id="colRoomPrice"  text="Price/Day (Rs.)" prefWidth="160"/>
+              <TableColumn fx:id="colRoomStatus" text="Status"          prefWidth="160"/>
+            </columns>
+          </TableView>
+        </VBox>
+      </Tab>
+      <Tab text="Book a Room">
+        <VBox spacing="16" style="-fx-background-color:#0d1117;-fx-padding:22;">
+          <TitledPane text="New Reservation" collapsible="false"
+                      style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;">
+            <GridPane hgap="14" vgap="12">
+              <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+              <Label text="Customer Name :"    style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+              <TextField fx:id="tfName" promptText="Guest full name" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+              <Label text="Contact No. :"     style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+              <TextField fx:id="tfContact" promptText="10-digit mobile" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+              <Label text="Room (Available):" style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+              <ComboBox fx:id="cbAvailRooms" promptText="Pick a room" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              <Label text="Nights of Stay :"  style="-fx-font-weight:bold;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+              <TextField fx:id="tfDays" promptText="Number of nights" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+              <Button text="Confirm Booking" onAction="#handleBooking"
+                      style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-padding:8 22;-fx-background-radius:6;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            </GridPane>
+          </TitledPane>
+          <Label text="Current Active Bookings" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;"/>
+          <TableView fx:id="bookingTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn fx:id="colBkId"      text="Booking ID"  prefWidth="120"/>
+              <TableColumn fx:id="colBkName"    text="Customer"    prefWidth="150"/>
+              <TableColumn fx:id="colBkContact" text="Contact"     prefWidth="120"/>
+              <TableColumn fx:id="colBkRoom"    text="Room"        prefWidth="80"/>
+              <TableColumn fx:id="colBkDate"    text="Check-In"    prefWidth="120"/>
+              <TableColumn fx:id="colBkDays"    text="Nights"      prefWidth="80"/>
+              <TableColumn fx:id="colBkAmt"     text="Amount(Rs.)" prefWidth="120"/>
+            </columns>
+          </TableView>
+        </VBox>
+      </Tab>
+      <Tab text="Checkout and Bill">
+        <VBox spacing="14" style="-fx-background-color:#0d1117;-fx-padding:22;">
+          <Label text="Select a booking and press Checkout"
+                 style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;"/>
+          <TableView fx:id="activeTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn fx:id="colActId"      text="Booking ID" prefWidth="120"/>
+              <TableColumn fx:id="colActName"    text="Customer"   prefWidth="150"/>
+              <TableColumn fx:id="colActContact" text="Contact"    prefWidth="120"/>
+              <TableColumn fx:id="colActRoom"    text="Room"       prefWidth="80"/>
+              <TableColumn fx:id="colActDate"    text="Check-In"   prefWidth="120"/>
+              <TableColumn fx:id="colActDays"    text="Nights"     prefWidth="80"/>
+              <TableColumn fx:id="colActAmt"     text="Base(Rs.)"  prefWidth="120"/>
+            </columns>
+          </TableView>
+          <Button text="Checkout and Generate Bill" onAction="#handleCheckout" maxWidth="Infinity"
+                  style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-font-weight:bold;-fx-padding:10 26;-fx-background-radius:6;"/>
+          <Label text="Invoice" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;"/>
+          <TextArea fx:id="billArea" editable="false" prefHeight="230"
+                    promptText="Bill will appear here after checkout..."
+                    style="-fx-font-family:'Courier New';-fx-font-size:13px;-fx-control-inner-background:#0d1117;-fx-text-fill:#39ff14;"/>
+        </VBox>
+      </Tab>
+      <Tab text="All Bookings">
+        <VBox spacing="14" style="-fx-background-color:#0d1117;-fx-padding:22;">
+          <Label text="Complete Booking History" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#0f3460;"/>
+          <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn fx:id="colHisId"      text="Booking ID" prefWidth="120"/>
+              <TableColumn fx:id="colHisName"    text="Customer"   prefWidth="140"/>
+              <TableColumn fx:id="colHisContact" text="Contact"    prefWidth="110"/>
+              <TableColumn fx:id="colHisRoom"    text="Room"       prefWidth="70"/>
+              <TableColumn fx:id="colHisDate"    text="Check-In"   prefWidth="110"/>
+              <TableColumn fx:id="colHisDays"    text="Nights"     prefWidth="70"/>
+              <TableColumn fx:id="colHisAmt"     text="Base(Rs.)"  prefWidth="110"/>
+              <TableColumn fx:id="colHisStatus"  text="Status"     prefWidth="120"/>
+            </columns>
+          </TableView>
+        </VBox>
+      </Tab>
+    </TabPane>
+  </center>
+</BorderPane>
