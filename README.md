@@ -8,6 +8,11 @@ A desktop Hotel Management System built with **Java 21** and **JavaFX**, featuri
 
 LuxStay provides a clean GUI for hotel staff to manage rooms and bookings end-to-end — from adding room inventory to generating a formatted tax invoice on check-out.
 
+![LuxStay Screenshot](screenshot.png)
+![LuxStay Screenshot](screenshot1.png)
+![LuxStay Screenshot](screenshot2.png)
+![LuxStay Screenshot](screenshot3.png)
+
 ---
 
 ## Features
